@@ -13,10 +13,10 @@ namespace E_tickets.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Indexs()
+        public async Task<IActionResult> Index()
         {
             var allProducers = await _context.Producers.ToListAsync();
-            return View();
+            return View(allProducers);
         }
     }
 }
