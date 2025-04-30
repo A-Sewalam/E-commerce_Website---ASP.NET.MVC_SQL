@@ -13,10 +13,10 @@ namespace E_tickets.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Indexs()
+        public async Task<IActionResult> Index()
         {
-            var allProducers = await _context.Movies.ToListAsync();
-            return View();
+            var allMovies = await _context.Movies.Include(n => n.Cinema ).OrderBy(n => n.Name).ToListAsync();
+            return View(allMovies);
         }
     }
 }
