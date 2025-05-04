@@ -1,4 +1,5 @@
 using E_tickets.Data;
+using E_tickets.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_tickets
@@ -19,9 +20,11 @@ namespace E_tickets
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddScoped<IActorsService, ActorsService>();
+
             var app = builder.Build();
 
-            
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -42,7 +45,7 @@ namespace E_tickets
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            
+
 
             AppDbInitializer.Seed(app);
 
