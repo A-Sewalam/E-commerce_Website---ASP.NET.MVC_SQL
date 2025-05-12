@@ -22,7 +22,7 @@
 
 
                     <div class="form-group text-center">
-                        <img id="ProfilePicturePreview" class="border-info rounded-circle" style="max-width: 150px" />
+                        <img id="PictureProfilePreview" class="border-info rounded-circle" style="max-width: 150px" />
                     </div>
 
 
@@ -63,14 +63,52 @@
 @section Scripts{
     <script>
         $(document).ready(function () {
-            var output = document.getElementById('ProfilePicturePreview');
+            var output = document.getElementById('PictureProfilePreview');
             output.src = $("#PictureProfileURL").val();
         })
 
 
         $("#PictureProfileURL").on("change", function () {
-            var output = document.getElementById('ProfilePicturePreview');
+            var output = document.getElementById('PictureProfilePreview');
             output.src = $(this).val();
         })
     </script>
 }
+
+@* 
+@section Scripts {
+    <script>
+        // Wait for the HTML document to be fully loaded and parsed
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // Get references to the input field and the preview image elements
+            const pictureInput = document.getElementById('PictureProfileURL');
+            const picturePreview = document.getElementById('ProfilePicturePreview');
+
+            // Check if both elements were found before proceeding
+            if (pictureInput && picturePreview) {
+
+                // --- Initial Setup (equivalent to document.ready part) ---
+                // Set the initial source of the preview image from the input's current value
+                picturePreview.src = pictureInput.value;
+
+                // --- Event Listener (equivalent to .on("change") part) ---
+                // Add an event listener to the input field that triggers when its value changes
+                pictureInput.addEventListener('change', function () {
+                    // When the input changes, update the preview image's source
+                    // 'this' inside this function refers to the pictureInput element
+                    picturePreview.src = this.value;
+                });
+
+            } else {
+                // Log an error if one or both elements couldn't be found
+                if (!pictureInput) {
+                    console.error('Error: Element with ID "PictureProfileURL" not found.');
+                }
+                if (!picturePreview) {
+                    console.error('Error: Element with ID "ProfilePicturePreview" not found.');
+                }
+            }
+        });
+    </script>
+} *@
