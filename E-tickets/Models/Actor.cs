@@ -1,11 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using E_tickets.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace E_tickets.Models
 {
-    public class Actor
+    public class Actor : IEntityBase
     {
         [Key]
         public int Id { get; set; }
+        //after inherting from  entitybase we can not implement it 
 
 
         [Display(Name = "Profile Picture")]
