@@ -2,6 +2,7 @@
 using E_tickets.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace E_tickets.Controllers
 {
@@ -27,6 +28,6 @@ namespace E_tickets.Controllers
             if (producerDetails == null) return View("NotFound");
             return View(producerDetails);
         }
-
+        
     }
 }
