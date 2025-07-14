@@ -55,11 +55,10 @@ namespace E_tickets.Data.Base
 
         public async Task UpdateAsync(int id, T entity)
         {
-            EntityEntry entityEntry = _context.Entry<T>(entity); // what is entity entiry
+            EntityEntry entityEntry = _context.Entry<T>(entity);
             entityEntry.State = EntityState.Modified;
+
             await _context.SaveChangesAsync();
-
-
         }
 
         public async Task DeleteAsync(int id)

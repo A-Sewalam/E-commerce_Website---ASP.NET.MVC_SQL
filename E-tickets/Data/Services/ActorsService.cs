@@ -4,12 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_tickets.Data.Services
 {
-    public class ActorsService : EntityBaseRepository<Actor>,IActorsService
+    public class ActorsService : EntityBaseRepository<Actor>, IActorsService
     {
 
-      //  private readonly AppDbContext _context;
+        //  private readonly AppDbContext _context;
 
         public ActorsService(AppDbContext context) : base(context) { }// we added this : base(context) { }
+
+
+
         //{
         //    _context = context;
         //}
@@ -43,7 +46,7 @@ namespace E_tickets.Data.Services
 
 
 
-       
+
 
 
         //public async Task<IEnumerable<Actor>> GetallAsync()
@@ -63,7 +66,9 @@ namespace E_tickets.Data.Services
         //public async Task<Actor> UpdateAsync(int id, Actor newActor)
         //{
         //    _context.Update(newActor);
+
         //    await _context.SaveChangesAsync();
+
         //    return newActor;
 
         //}

@@ -56,8 +56,9 @@ namespace E_Tickets.Controllers
             return View(actorDetails);
         }
 
+       
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind(" Id,FullName,PictureProfileURL,Bio")] Actor actor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,FullName,PictureProfileURL,Bio")] Actor actor)
         {
             if (!ModelState.IsValid)
             {
