@@ -10,7 +10,7 @@ namespace E_tickets.Controllers
     public class ProducersController : Controller
     {
         private readonly IProducersService _service;
-        
+
 
         public ProducersController(IProducersService service)
         {
@@ -48,7 +48,7 @@ namespace E_tickets.Controllers
 
 
         //GET : producers/edit
-        public async Task<IActionResult> Edit(int id )
+        public async Task<IActionResult> Edit(int id)
         {
             var producerDetails = await _service.GetByIdAsync(id);
             if (producerDetails == null) return View("NotFround");
@@ -66,6 +66,24 @@ namespace E_tickets.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(producer);
+        }
+
+        //get: producers/delete/1
+        public async Task<IActionResult> Delete(int id)
+        {
+            var producerDetails = await _service.GetByIdAsync(id);
+            if (producerDetails == null) return View("NotFound");
+            return View(producerDetails);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var producerDetails = await _service.GetByIdAsync(id);
+            if (producerDetails == null) return View("NotFound");
+
+            await _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
         }
 
     }

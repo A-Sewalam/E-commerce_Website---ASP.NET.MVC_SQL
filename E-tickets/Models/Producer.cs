@@ -24,6 +24,6 @@ namespace E_tickets.Models
 
         // Relationships
 
-        public List<Movie> Movies { get; set; }
+        public List<Movie> Movies { get; set; } = new List<Movie>();
     }
 }
