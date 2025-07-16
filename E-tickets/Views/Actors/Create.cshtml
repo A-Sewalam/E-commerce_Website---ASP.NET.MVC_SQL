@@ -19,6 +19,20 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger">
 
                     </div>
+                    @* 🔍 Debug: Show exact ModelState errors *@
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <ul class="text-danger">
+                            @foreach (var entry in ViewData.ModelState)
+                            {
+                                foreach (var error in entry.Value.Errors)
+                                {
+                                    <li>@entry.Key: @error.ErrorMessage</li>
+                                }
+                            }
+                        </ul>
+                    }
+
 
 
                     <div class="form-group text-center">
@@ -27,9 +41,9 @@
 
 
                     <div class="form-group">
-                        <label asp-for="PictureProfileURL" class="control-label"></label>
-                        <input asp-for="PictureProfileURL" class="form-control" />
-                        <span asp-validation-for="PictureProfileURL" class="text-danger"></span>
+                        <label asp-for="ProfilePictureURL" class="control-label"></label>
+                        <input asp-for="ProfilePictureURL" class="form-control" />
+                        <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
                     </div>
 
 
@@ -64,11 +78,11 @@
     <script>
         $(document).ready(function () {
             var output = document.getElementById('PictureProfilePreview');
-            output.src = $("#PictureProfileURL").val();
+            output.src = $("#ProfilePictureURL").val();
         })
 
 
-        $("#PictureProfileURL").on("change", function () {
+        $("#ProfilePictureURL").on("change", function () {
             var output = document.getElementById('PictureProfilePreview');
             output.src = $(this).val();
         })
@@ -82,7 +96,7 @@
         document.addEventListener('DOMContentLoaded', function () {
 
             // Get references to the input field and the preview image elements
-            const pictureInput = document.getElementById('PictureProfileURL');
+            const pictureInput = document.getElementById('ProfilePictureURL');
             const picturePreview = document.getElementById('ProfilePicturePreview');
 
             // Check if both elements were found before proceeding
@@ -103,7 +117,7 @@
             } else {
                 // Log an error if one or both elements couldn't be found
                 if (!pictureInput) {
-                    console.error('Error: Element with ID "PictureProfileURL" not found.');
+                    console.error('Error: Element with ID "ProfilePictureURL" not found.');
                 }
                 if (!picturePreview) {
                     console.error('Error: Element with ID "ProfilePicturePreview" not found.');

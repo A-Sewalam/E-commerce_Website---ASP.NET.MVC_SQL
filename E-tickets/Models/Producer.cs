@@ -10,7 +10,7 @@ namespace E_tickets.Models
 
         [Display(Name = "Profile Picture")]
         [Required(ErrorMessage = "Profile Picture is required")]
-        public string PictureProfileURL { get; set; }
+        public string ProfilePictureURL { get; set; }
 
         [Display(Name = "Name")]
         [Required(ErrorMessage = "Full Name is required")]

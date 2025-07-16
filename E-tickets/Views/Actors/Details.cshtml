@@ -26,9 +26,9 @@
 
 
                     <div class="form-group">
-                        <label asp-for="PictureProfileURL" class="control-label"></label>
-                        <input asp-for="PictureProfileURL" class="form-control" readonly />
-                        <span asp-validation-for="PictureProfileURL" class="text-danger"></span>
+                        <label asp-for="ProfilePictureURL" class="control-label"></label>
+                        <input asp-for="ProfilePictureURL" class="form-control" readonly />
+                        <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
                     </div>
 
 
@@ -63,7 +63,7 @@
     <script>
         $(document).ready(function () {
             var output = document.getElementById('ProfilePicturePreview');
-            output.src = $("#PictureProfileURL").val();
+            output.src = $("#ProfilePictureURL").val();
         }
     </script>
 }

@@ -17,6 +17,6 @@ namespace E_tickets.Data.Services
         //Task DeleteAsync(int id);
 
         //  //void Delete(int id);
-
+        
     }
 }
