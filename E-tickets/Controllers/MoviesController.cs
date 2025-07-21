@@ -27,5 +27,15 @@ namespace E_tickets.Controllers
             return View(movieDetail);
         }
 
+        // Get : Movies/Create
+
+        public IActionResult Create()
+        {
+
+            ViewData["Welcome"] = "Welcome to our Stroe";
+            ViewBag.Description = "hello";
+            return View();
+        }
+
     }
 }
