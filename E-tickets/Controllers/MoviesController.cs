@@ -1,6 +1,7 @@
 ﻿using E_tickets.Data;
 using E_tickets.Data.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_tickets.Controllers
@@ -29,11 +30,14 @@ namespace E_tickets.Controllers
 
         // Get : Movies/Create
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
 
-            ViewData["Welcome"] = "Welcome to our Stroe";
-            ViewBag.Description = "hello";
+            var movieDropdownsData = await _service.GetNewMovieDropdownsValues();
+
+            ViewBag.Cinemas = new SelectList(movieDropdownsData.Cinemas, "Id", "Name");
+            ViewBag.Producers = new SelectList(movieDropdownsData.Producers, "Id", "FullName");
+            ViewBag.Actors = new SelectList(movieDropdownsData.Actors, "Id", "FullName");
             return View();
         }
 
