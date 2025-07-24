@@ -38,8 +38,10 @@ namespace E_tickets.Data
             public DbSet<Producer> Producers { get; set; }
 
 
-    }
-        // used to define relationships between entities
+             //Orders related tables
+             public DbSet<Order> Orders { get; set; }
+             public DbSet<OrderItem> OrderItems { get; set; }
 
-    
+    }
+        
 }

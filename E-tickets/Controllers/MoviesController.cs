@@ -4,6 +4,7 @@ using E_tickets.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace E_tickets.Controllers
 {
@@ -27,8 +28,8 @@ namespace E_tickets.Controllers
             var allMovies = await _service.GetallAsync(n => n.Cinema);
             if (!string.IsNullOrEmpty(searchString))
             {
-                var filteredResult = allMovies.Where(n => n.Name.Contains(searchString) || n.Description.Contains(searchString)).ToList();// to list ??
-                return View("index", filteredResult); // iflter result ??
+                var filteredResult = allMovies.Where(n => n.Name.Contains(searchString) || n.Description.Contains(searchString)).ToList();
+                return View("index", filteredResult); 
             }
             return View("index" , allMovies );
         }
