@@ -1,4 +1,5 @@
 using E_tickets.Data;
+using E_tickets.Data.Cart;
 using E_tickets.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,11 @@ namespace E_tickets
             builder.Services.AddScoped<ICinemasService, CinemasService>();
             builder.Services.AddScoped<IMoviesService, MoviesService>();
 
+            //services for the sessoin
+            builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+
+            builder.Services.AddSession();
 
             var app = builder.Build();
 
@@ -42,6 +48,8 @@ namespace E_tickets
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 
