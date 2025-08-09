@@ -51,7 +51,7 @@ namespace E_tickets.Data.Cart
         public void AddItemToCart(Movie movie)
         {
             var shoppingCartItem = _context.ShoppingCartItems.FirstOrDefault(n => n.Movie.Id == movie.Id && n.ShoppingCartId == ShoppingCartId);
-
+            
             if (shoppingCartItem == null)
             {
                 shoppingCartItem = new ShoppingCartItem()

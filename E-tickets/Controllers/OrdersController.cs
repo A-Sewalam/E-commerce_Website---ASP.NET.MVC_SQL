@@ -28,7 +28,7 @@ namespace E_tickets.Controllers
                 ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal()
             };
 
-           
+
             return View(response);
         }
 
@@ -42,6 +42,18 @@ namespace E_tickets.Controllers
                 _shoppingCart.AddItemToCart(item);
             }
             return RedirectToAction(nameof(ShoppingCart)); // you will go to a method and this method at the end will return a view
+        }
+
+        public async Task<RedirectToActionResult> RemoveItemFromShoppingCart(int id)
+        {
+            var item = await _moviesService.GetMovieByIdAsync(id);
+
+
+            if (item != null)
+            {
+                _shoppingCart.RemoveItemFromCart(item);
+            }
+            return RedirectToAction(nameof(ShoppingCart)); 
         }
 
 
