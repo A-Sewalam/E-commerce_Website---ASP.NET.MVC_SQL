@@ -99,6 +99,7 @@
 
             //Set up a payment
             payment: function (data, actions) {
+
                 return actions.payment.create({
                     transactions: [{
                         amount: {
@@ -109,9 +110,12 @@
                 });
             },
 
-            //Execute the payment
+         //Execute the payment
             onAuthorize: function (data, actions) {
-                console.log("payment executed");
+                return actions.payment.execute().then(function () {
+                    var url = '@Url.Action("CompleteOrder", "Orders", new { })';
+                    window.location.href = url;
+                });
             }
 
         }, '#paypal-btn')

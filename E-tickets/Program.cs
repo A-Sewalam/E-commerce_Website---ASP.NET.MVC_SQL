@@ -60,8 +60,10 @@ namespace E_tickets
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
 
+            // Seeding data to the app 
 
             AppDbInitializer.Seed(app);
+            AppDbInitializer.SeedUsersAndRolesAsync(app).Wait();
 
             app.Run();
         }
