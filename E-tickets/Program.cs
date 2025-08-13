@@ -1,6 +1,9 @@
 using E_tickets.Data;
 using E_tickets.Data.Cart;
 using E_tickets.Data.Services;
+using E_tickets.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace E_tickets
@@ -32,6 +35,31 @@ namespace E_tickets
             builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
 
+
+            //Authentication & Authorization 
+
+
+         
+            builder.Services
+                .AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
+
+        
+            builder.Services.AddMemoryCache();
+
+        
+            builder.Services.AddSession();
+
+            
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            });
+
+
+
+
             builder.Services.AddSession();
 
             var app = builder.Build();
@@ -48,6 +76,11 @@ namespace E_tickets
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            //Authentication & Authorization 
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseRouting();
 
