@@ -4,6 +4,7 @@ using E_tickets.Data.ViewModels;
 using E_tickets.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_tickets.Controllers
 {
@@ -73,8 +74,27 @@ namespace E_tickets.Controllers
             if (newUserResponse.Succeeded)
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
 
-            return View("RegisterCompleted");
+        public async Task<IActionResult> Users()
+        {
+          
+                var users = await _context.Users.ToListAsync();
+                return View(users);
+            
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Movies");
+        }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+
+
 
     }
 }
